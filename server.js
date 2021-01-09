@@ -22,3 +22,11 @@ connection.once('open', () => {
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
 });
+
+
+//HEARTBEAT
+app.get('/heartbeat', (req, res) => {
+    res.json({
+        is: "working"
+    })
+}) 
