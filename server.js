@@ -5,11 +5,13 @@ const mongoose = require('mongoose');
 const app = express();
 const port = process.env.PORT || 5000
 const fetch = require('node-fetch')
-
+const eventRoutes = require('./routes/Events')
 //MIDDLEWARE
 app.use(cors());
 app.use(express.json());
 
+
+app.use('/events', eventRoutes);
 //DATABASE CONNECTION
 const uri = process.env.ATLAS_URI;
 mongoose.connect(uri, {useNewUrlParser: true, useCreateIndex: true });
@@ -49,9 +51,19 @@ app.get('/categories', (req, res) => {
 }) 
 
 app.get('/popular-events', (req, res) => {
-    res.json({
-        data: "popular-events"
+    let bearer = 'Bearer ' + process.env.EB_TOKEN; 
+    let url = "https://www.eventbriteapi.com/v3/venues/"; 
+    fetch(url,
+        {
+        method: 'GET', 
+        headers: {
+            "Authorization" : bearer, 
+            'Content-Type': 'application/json',
+        }
     })
+        .then(result => result.json())
+        .then(data => res.json(data))
+        .catch(error => res.json({error: error}))
 }) 
 
 app.get('/ongoing-events', (req, res) => {
@@ -71,3 +83,10 @@ app.get('/search', (req, res) => {
         data: "search"
     })
 }) 
+
+app.get('/api/login', (req, res) => {
+    res.json({
+        data: "search"
+    })
+}) 
+
