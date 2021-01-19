@@ -6,12 +6,12 @@ const app = express();
 const port = process.env.PORT || 5000
 const fetch = require('node-fetch')
 const eventRoutes = require('./routes/Events')
+
 //MIDDLEWARE
 app.use(cors());
 app.use(express.json());
-
-
 app.use('/events', eventRoutes);
+
 //DATABASE CONNECTION
 const uri = process.env.ATLAS_URI;
 mongoose.connect(uri, {useNewUrlParser: true, useCreateIndex: true });
@@ -27,7 +27,7 @@ app.listen(port, () => {
 });
 
 
-//HEARTBEAT
+// //HEARTBEAT
 app.get('/heartbeat', (req, res) => {
     res.json({
         is: "working"
