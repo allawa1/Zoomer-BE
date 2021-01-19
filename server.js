@@ -6,12 +6,14 @@ const app = express();
 const port = process.env.PORT || 5000
 const fetch = require('node-fetch')
 const eventRoutes = require('./routes/Events')
+const testAPIRouter = require('./routes/testAPI')
 //MIDDLEWARE
 app.use(cors());
 app.use(express.json());
 
 
 app.use('/events', eventRoutes);
+app.use('/testAPI', testAPIRouter);
 //DATABASE CONNECTION
 const uri = process.env.ATLAS_URI;
 mongoose.connect(uri, {useNewUrlParser: true, useCreateIndex: true });
@@ -86,7 +88,7 @@ app.get('/search', (req, res) => {
 
 app.get('/api/login', (req, res) => {
     res.json({
-        data: "search"
+        data: "login"
     })
 }) 
 
