@@ -8,12 +8,13 @@ const fetch = require('node-fetch')
 const eventRoutes = require('./routes/Events')
 
 const testAPIRouter = require('./routes/testAPI')
-
+const userRoutes = require('./routes/Users')
 //MIDDLEWARE
 app.use(cors());
 app.use(express.json());
-app.use('/events', eventRoutes);
 
+app.use('/users', userRoutes);
+app.use('/events', eventRoutes);
 app.use('/testAPI', testAPIRouter);
 
 
@@ -89,9 +90,7 @@ app.get('/search', (req, res) => {
     })
 }) 
 
-app.get('/api/login', (req, res) => {
-    res.json({
-        data: "login"
-    })
-}) 
+
+
+
 
