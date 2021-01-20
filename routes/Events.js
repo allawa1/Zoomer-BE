@@ -4,7 +4,8 @@ const Event = require('../Models/Event');
 
 
 router.get('/', (req, res)=>{
-    res.send('We are on Events');
+    Event.find({})
+    .then(data => res.json(data))
 }); 
 
 router.post('/', (req, res)=>{
