@@ -8,8 +8,18 @@ router.get('/', (req, res)=>{
 }); 
 
 router.post('/', (req, res)=>{
-    console.log(req.body)
-    
+    const event = new Event({
+        eventID: req.body.eventID,
+        title: req.body.title,
+        description: req.body.description,
+        location: req.body.location,
+        host: req.body.host
+    });
+    event.save()
+    .then(data => res.json(data))
+    .catch(err => {
+        res.json({message: err })
+    })
 }); 
 
 
