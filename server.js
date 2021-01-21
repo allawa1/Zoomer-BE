@@ -8,7 +8,15 @@ const fetch = require('node-fetch')
 const eventRoutes = require('./routes/Events')
 
 const testAPIRouter = require('./routes/testAPI')
+
+
+const bodyParser = require('body-parser')
+
+
+
+
 const userRoutes = require('./routes/Users')
+
 //MIDDLEWARE
 app.use(cors());
 app.use(express.json());
@@ -17,6 +25,7 @@ app.use('/users', userRoutes);
 app.use('/events', eventRoutes);
 app.use('/testAPI', testAPIRouter);
 
+app.use(bodyParser.json());
 
 //DATABASE CONNECTION
 const uri = process.env.ATLAS_URI;

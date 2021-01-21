@@ -24,8 +24,31 @@ const EventSchema = mongoose.Schema({
     host: {
         type: String, 
         required: true
+    },
+    tag: {
+        type: String,
+        required: false
+    },
+    formName: {
+        type: String,
+        required: true
+    },
+    formDate: {
+        type: Date,
+        required: true
+    },
+    formLocation: {
+        type: String,
+        required: false
+    },
+    formDetails: {
+        type: String,
+        required: true
     }
 
 }); 
+
+
+
 
 module.exports = mongoose.model('Events', EventSchema); 
