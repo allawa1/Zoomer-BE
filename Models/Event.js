@@ -25,6 +25,10 @@ const EventSchema = mongoose.Schema({
         type: String, 
         required: true
     },
+    tag: {
+        type: String,
+        required: false
+    },
     formName: {
         type: String,
         required: true
