@@ -30,5 +30,25 @@ router.post('/', (req, res)=>{
 }); 
 
 
+router.get('/art', (req, res)=>{
+    Event.find({tag: "Art"})
+    .then(data => res.json(data))
+}); 
+
+router.get('/volunteer', (req, res)=>{
+    Event.find({tag: "Volunteer"})
+    .then(data => res.json(data))
+}); 
+
+router.get('/education', (req, res)=>{
+    Event.find({tag: "Education" })
+    .then(data => res.json(data))
+}); 
+
+router.get('/career', (req, res)=>{
+    Event.find({tag: "Career"}) 
+    
+    .then(data => res.json(data))
+}); 
 
 module.exports = router; 
