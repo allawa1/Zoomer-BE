@@ -10,7 +10,7 @@ router.get('/', (req, res)=>{
 }); 
 
 router.get('/categories', (req,res)=>{
-
+    res.send("categories")
 })
 router.post('/', (req, res)=>{
     const event = new Event({
