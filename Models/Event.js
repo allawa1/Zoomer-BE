@@ -1,6 +1,9 @@
 const mongoose = require('mongoose'); 
+const Schema = mongoose.Schema;
+const ObjectId = Schema.ObjectId;
+const User = require('./User');
 
-const EventSchema = mongoose.Schema({
+const EventSchema = new Schema({
     eventID: {
         type: Number,
         required: true
@@ -15,36 +18,20 @@ const EventSchema = mongoose.Schema({
     }, 
     date: {
         type: Date, 
-        default: Date.now
+        required: true
     }, 
     location: {
         type: String, 
         required: true
     }, 
     host: {
-        type: String, 
-        required: true
+        type: ObjectId,
+        ref: User
     },
     tag: {
         type: String,
         required: false
     },
-    formName: {
-        type: String,
-        required: true
-    },
-    formDate: {
-        type: Date,
-        required: true
-    },
-    formLocation: {
-        type: String,
-        required: false
-    },
-    formDetails: {
-        type: String,
-        required: true
-    }
 
 }); 
 
