@@ -13,9 +13,17 @@ const testAPIRouter = require('./routes/testAPI')
 const bodyParser = require('body-parser')
 
 
+const formRoutes = require('./routes/Form')
 
 
 const userRoutes = require('./routes/Users')
+
+const path = require('path')
+app.get('/', (req, res)=>{  
+    res.sendFile(
+        path.join(__dirname, '../public/index.html')
+        );
+    })
 
 //MIDDLEWARE
 app.use(cors());
@@ -24,8 +32,11 @@ app.use(express.json());
 app.use('/users', userRoutes);
 app.use('/events', eventRoutes);
 app.use('/testAPI', testAPIRouter);
+app.use('/form', formRoutes);
 
 app.use(bodyParser.json());
+
+
 
 //DATABASE CONNECTION
 const uri = process.env.ATLAS_URI;
@@ -71,6 +82,11 @@ app.get('/search', (req, res) => {
     })
 }) 
 
+app.get('/form', (req, res) => {
+    res.json({
+        data: "form"
+    })
+}) 
 
 
 

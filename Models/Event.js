@@ -31,7 +31,7 @@ const EventSchema = new Schema({
     tag: {
         type: String,
         required: false
-    },
+    }
 
 }); 
 
