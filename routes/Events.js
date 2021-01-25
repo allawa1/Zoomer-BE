@@ -4,6 +4,13 @@ const Event = require('../Models/Event');
 
 var bodyParser = require('body-parser')
 
+
+
+function dateDisplayed(timestamp) {
+    var date = new Date(timestamp);
+    return (date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear());
+}
+
 router.get('/', (req, res)=>{
     Event.find({})
     .then(data => res.json(data))
@@ -17,7 +24,7 @@ router.post('/', (req, res)=>{
         eventID: req.body.eventID,
         title: req.body.title,
         description: req.body.description,
-        date: new Date(req.body.date).toDateString(),
+        date: req.body.date.toLocaleString(),
         location: req.body.location,
         host: req.body.host,
         tag: req.body.tag
@@ -50,5 +57,13 @@ router.get('/career', (req, res)=>{
     
     .then(data => res.json(data))
 }); 
+
+router.get('/today', (req, res)=>{
+    Event.find({date: dateDisplayed(req.body.date)}) 
+    
+    .then(data => res.json(data))
+}); 
+
+
 
 module.exports = router; 
