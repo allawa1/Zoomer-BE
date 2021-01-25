@@ -24,7 +24,7 @@ router.post('/', (req, res)=>{
         eventID: req.body.eventID,
         title: req.body.title,
         description: req.body.description,
-        date: req.body.date.toLocaleString(),
+        date: req.body.date.toString(),
         location: req.body.location,
         host: req.body.host,
         tag: req.body.tag
