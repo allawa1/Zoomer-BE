@@ -63,7 +63,9 @@ router.get('/today', (req, res)=>{
     Event.find({date: dateDisplayed(req.body.date)}) 
     
     .then(data => res.json(data))
-    
+    .catch(err => {
+        res.json({message: err })
+    })
 }); 
 
 
