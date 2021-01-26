@@ -6,10 +6,7 @@ var bodyParser = require('body-parser')
 
 
 
-function dateDisplayed(timestamp) {
-    var date = new Date(timestamp);
-    return (date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear());
-}
+
 
 router.get('/', (req, res)=>{
     Event.find({})
@@ -59,10 +56,14 @@ router.get('/career', (req, res)=>{
 }); 
 
 router.get('/today', (req, res)=>{
+    function dateDisplayed(timestamp) {
+        var date = new Date(timestamp);
+        return (date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear());
+    }
     Event.find({date: dateDisplayed(req.body.date)}) 
     
     .then(data => res.json(data))
-    .catch(error => { throw error})
+    
 }); 
 
 
